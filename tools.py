@@ -10,7 +10,7 @@ import re
 EXCLUDE_DIRS = {".git", "data", "tests", "build", "__pycache__", "venv", ".venv", "env", "site-packages"}
 EXTS = (
     ".py", ".md", ".txt", "requirements.txt",
-    "setup.py", "pyproject.toml", ".sh"
+    "setup.py", "pyproject.toml", ".shs"
 )
 MAX_FILES = 25              # até 25 arquivos por projeto
 MAX_CHARS_PER_FILE = 10_000 # até 10.000 caracteres por arquivo
