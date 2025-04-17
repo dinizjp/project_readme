@@ -1,99 +1,64 @@
 # project_readme
 
-Este projeto, **project_readme**, é uma ferramenta poderosa para gerar automaticamente documentação em formato Markdown (README.md) para seus projetos Python. Ele analisa a estrutura do projeto e gera um README completo e formatado, seguindo as melhores práticas.
+## Descrição do Projeto
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![Version](https://img.shields.io/badge/version-1.0.0-blue) ![License](https://img.shields.io/badge/license-MIT-yellow)
+Este projeto consiste em um conjunto de arquivos que implementam uma ferramenta para geração automatizada de README.md para projetos de software, usando integração com a API do OpenAI GPT. Ele inclui scripts para leitura de arquivos de projeto, descoberta de projetos em diretórios, geração de conteúdo estruturado para README, além de diversas utilidades e configurações de transporte HTTP e manipulação de conteúdo.
 
 ## Sumário
-
-- [Requisitos](#requisitos)
 - [Instalação](#instalação)
-- [Exemplos de Uso](#exemplos-de-uso)
+- [Uso](#uso)
 - [Estrutura de Pastas](#estrutura-de-pastas)
-- [Contribuindo](#contribuindo)
-
-## Requisitos
-
-- Python 3.12 ou superior.
-- Dependências: `httpx`, `typing_extensions`, e outras que podem ser instaladas via `pip`.
+- [Contato](#contato)
 
 ## Instalação
 
-Para instalar o **project_readme**, siga os passos abaixo:
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/username/project_readme.git
-   cd project_readme
-   ```
-
-2. Crie um ambiente virtual:
-   ```bash
-   python -m venv venv
-   ```
-
-3. Ative o ambiente virtual:
-   - No Windows:
-     ```bash
-     venv\Scripts\activate
-     ```
-   - No macOS/Linux:
-     ```bash
-     source venv/bin/activate
-     ```
-
-4. Instale as dependências:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## Exemplos de Uso
-
-Para gerar um README.md para seu projeto, execute o seguinte comando no terminal:
+Para preparar o ambiente, instale as dependências necessárias, preferencialmente usando o arquivo `requirements.txt`. Caso queira instalar via `setup.py`, execute:
 
 ```bash
-python agent.py --single /caminho/para/seu/projeto
+pip install .
 ```
 
-Você pode personalizar as opções de geração de README utilizando os parâmetros adicionais disponíveis:
+Certifique-se de configurar sua variável de ambiente `OPENAI_API_KEY` com sua chave de API do OpenAI para que o script funcione corretamente.
 
-- `--project_name`: Para especificar um nome para o projeto.
-- `--author`: Para adicionar o nome do autor no README.
-- `--output`: Para especificar o arquivo de saída do README.md.
+## Uso
+
+Execute o script `agent.py` passando os caminhos de projetos ou diretórios que deseja processar. Exemplo de uso:
+
+```bash
+python3 agent.py --single ./meu_projeto
+```
+
+Se desejar processar múltiplos diretórios ou projetos em um caminho raiz, basta informar os caminhos:
+
+```bash
+python3 agent.py ./diretorio1 ./diretorio2
+```
+
+O programa buscará projetos nas pastas especificadas, gerará o README.md correspondente usando GPT e salvará na raiz de cada projeto.
+
+Para gerar README de projetos específicos de forma individual, use:
+
+```bash
+python3 agent.py --single ./projeto_especifico
+```
 
 ## Estrutura de Pastas
 
-A estrutura de pastas do projeto é a seguinte:
+- `agent.py`  
+  Script principal que controla a leitura de projetos, geração de README via GPT, e comandos CLI.
 
-```
-project_readme/
-├── agent.py               # Script principal para gerar README.md
-├── tools.py               # Funções auxiliares
-├── venv/                  # Ambiente virtual
-│   ├── bin/               # Dependências do projeto
-│   ├── include/
-│   └── lib/
-├── README.md              # Instruções do projeto
-├── requirements.txt       # Dependências
+- `tools.py`  
+  Utilitários para leitura e descoberta de projetos em diretórios, filtrando arquivos relevantes.
 
-```
+- `venv_lib_python3.12_site-packages_*`  
+  Diversos pacotes de dependências, incluindo definições de tipos, utilidades HTTP, decodificadores, modelos de dados, e implementações de transportes HTTP.
 
-### Principais Arquivos
+- Outros arquivos de bibliotecas como `httpx`, `httpcore`, `pygments`, `rich`, que fornecem funcionalidades de requisições HTTP, processamento de conteúdo, formatação, e análise de código.
 
-- `agent.py`: O script principal que realiza a geração do README.md.
-- `tools.py`: Contém funções auxiliares para operação do agente.
-- `venv/`: Ambiente virtual contendo as dependências do projeto.
+## Contato
 
-## Contribuindo
-
-Contribuições são bem-vindas! Se você encontrar um bug ou quiser adicionar uma nova funcionalidade, sinta-se à vontade para abrir uma issue ou um pull request.
-
-1. Faça um fork do repositório.
-2. Crie uma nova branch (`git checkout -b feature/nova-funcionalidade`).
-3. Faça suas alterações e commit (`git commit -m 'Adiciona nova funcionalidade'`).
-4. Envie para o seu fork (`git push origin feature/nova-funcionalidade`).
-5. Abra um pull request.
+Para reportar problemas ou solicitar ajuda, envie uma mensagem para o administrador do projeto ou abra uma issue no repositório GitHub correspondente. Para configurações específicas de API, configure sua variável de ambiente `OPENAI_API_KEY` com sua chave válida.
 
 ---
 
-Estamos sempre procurando formas de melhorar e otimizar o **project_readme**. Se você tiver sugestões, não hesite em nos avisar!
+**Nota:** Este projeto depende de configurações de API da OpenAI e requer conexão à internet para funcionamento adequado. Além disso, Certifique-se de instalar as dependências necessárias listadas no requirements.txt ou setup.py antes de iniciar a utilização.

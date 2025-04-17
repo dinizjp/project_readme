@@ -18,44 +18,48 @@ def generate_readme_for_project(proj_path: str, client: OpenAI):
         print(f"⚠️ Nenhum arquivo relevante em {proj_name}, pulando.")
         return
 
-    # Seu prompt original, sem alterações
-    prompt = (
-        f"Crie um **README.md** completo para o projeto **{proj_name}**, "
-        f"cuja lista de arquivos é: {list(arquivos.keys())}.\n\n"
-        "O README deve conter:\n"
-        "- **Título** e breve descrição do projeto\n"
-        "- **Sumário** com links para cada seção\n"
-        "- **Requisitos** e instruções de instalação\n"
-        "- **Exemplos de uso** e como rodar/testar\n"
-        "- **Estrutura de pastas** e principais arquivos\n"
+    # Prompt principal em português
+    base_prompt = (
+        f"Você é um gerador profissional de README.md. Use **apenas** as informações abaixo—"
+        f"não invente nada que não esteja nesses dados.\n"
+        f"Gere um README claro, conciso e completo para o projeto **{proj_name}**.\n\n"
+        "O README deve conter as seguintes seções:\n"
+        "1. **Título**: use o nome do projeto\n"
+        "2. **Descrição do Projeto**: breve visão geral baseada apenas nos arquivos fornecidos\n"
+        "3. **Sumário** com links para cada seção\n"
+        "4. **Instalação**: instruções baseadas em requirements.txt ou setup.py\n"
+        "5. **Uso**: exemplos de como executar os principais scripts ou módulos\n"
+        "6. **Estrutura de Pastas**: liste cada arquivo/diretório fornecido com uma breve descrição\n"
+        "7. **Contato**: como reportar problemas ou solicitar ajuda\n\n"
     )
+
+    # Anexa todo o código/texto em um único bloco no prompt do usuário
+    file_sections = []
+    for name, text in arquivos.items():
+        file_sections.append(
+            f"---\n### Arquivo: {name}\n```\n{text}\n```\n"
+        )
+
+    full_prompt = base_prompt + "\n".join(file_sections)
 
     messages = [
         {
             "role": "system",
             "content": (
-                "Você é um gerador de README.md de alta qualidade para projetos GitHub. "
-                "Siga as melhores práticas de documentação: clareza, hierarquia de títulos, "
-                "e navegação por sumário."
+                "Você é um gerador profissional de README.md para projetos GitHub. "
+                "Responda **somente** com o conteúdo do README—não inclua comentários, "
+                "metadados ou markup extra fora do próprio README."
             )
         },
         {
             "role": "user",
-            "content": prompt
+            "content": full_prompt
         }
     ]
 
-    # Anexa cada arquivo como contexto
-    for name, text in arquivos.items():
-        messages.append({
-            "role": "assistant",
-            "name": name,
-            "content": text
-        })
-
-    # Chama o ChatGPT sem 'functions' (garante sempre content)
+    # Chama a API sem functions
     response = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model="gpt-4.1-nano-2025-04-14",
         messages=messages
     )
     readme_text = response.choices[0].message.content
