@@ -1,7 +1,7 @@
 # project_readme
 
 ## Descrição
-O projeto automatiza a geração de arquivos README.md para projetos Python, utilizando inteligência artificial. Ele identifica as pastas de projetos em um diretório raiz, lê os arquivos relevantes, e cria uma documentação estruturada com seções específicas. A geração do README é feita por um agente que utiliza o OpenAI GPT-4, baseado nas informações extraídas dos arquivos do projeto.
+Este projeto automatiza a geração de arquivos README.md para projetos Python. Ele identifica as pastas de projetos em um diretório principal, lê os arquivos relevantes de cada projeto e utiliza inteligência artificial (ChatGPT) para criar uma documentação estruturada. A geração do README inclui seções como título, descrição, sumário, dependências, instalação, uso e estrutura de pastas, tudo com base nas informações extraídas dos arquivos do projeto.
 
 ## Sumário
 - [Instalação](#instalação)
@@ -9,13 +9,13 @@ O projeto automatiza a geração de arquivos README.md para projetos Python, uti
 - [Estrutura de Pastas](#estrutura-de-pastas)
 
 ## Instalação
-Após clonar ou obter os arquivos do projeto, execute:
+Após obter os arquivos do projeto, execute:
 
 ```sh
 pip install -r requirements.txt
 ```
 
-Certifique-se de que a variável de ambiente `OPENAI_API_KEY` está configurada com sua chave da API do OpenAI.
+Certifique-se de configurar a variável de ambiente `OPENAI_API_KEY` com sua chave da API do OpenAI.
 
 ## Uso
 Para gerar README.md para projetos específicos ou detectar múltiplos projetos em um diretório, utilize o script `agent.py`.
@@ -38,7 +38,7 @@ python agent.py caminho/do/diretorio
 python agent.py caminho1 caminho2 --single
 ```
 
-O script irá identificar automaticamente repositórios Git ou pastas com arquivos de configuração Python, lendo os arquivos relevantes e gerando o README em cada projeto.
+O script identifica automaticamente repositórios Git ou pastas com arquivos de configuração Python, lê os arquivos relevantes e gera o README em cada projeto.
 
 ## Estrutura de Pastas
 ```

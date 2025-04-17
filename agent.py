@@ -27,9 +27,10 @@ def generate_readme_for_project(proj_path: str, client: OpenAI):
         "1. **Título**: use o nome do projeto\n"
         "2. **Descrição**: visão geral baseada só nos arquivos fornecidos\n"
         "3. **Sumário**: links para cada seção\n"
-        "4. **Instalação**: instruções a partir de requirements.txt\n"
-        "5. **Uso**: exemplos de execução dos principais scripts\n"
-        "6. **Estrutura de Pastas**:Use a estrutura de árvore para criar a representação do diretório — sem dependências externas\n\n"
+        "4. **Dependências**: dependências necessárias para o projeto\n"
+        "5. **Instalação**: instruções a partir de requirements.txt\n"
+        "6. **Uso**: exemplos de execução dos principais scripts\n"
+        "7. **Estrutura de Pastas**:Use a estrutura de árvore para criar a representação do diretório — sem dependências externas\n\n"
     )
 
     # Monta bloco único com todo o código/texto
