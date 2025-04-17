@@ -25,6 +25,11 @@ Para tratar cada caminho como um projeto único:
 ```bash
 python agent.py --single caminho/do/projeto
 ```
+ou
+
+```bash
+python agent.py -s caminho/do/projeto
+```
 
 Para analisar múltiplos projetos dentro de uma pasta:
 ```bash
@@ -33,7 +38,7 @@ python agent.py caminho/para/pasta
 
 Se desejar processar diferentes pastas:
 ```bash
-python agent.py pasta1 pasta2
+python agent.py pasta1 pasta2 --single
 ```
 
 O script irá detectar automaticamente os projetos dentro dos caminhos fornecidos, solicitando ao GPT a elaboração dos READMEs.
