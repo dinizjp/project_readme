@@ -1,57 +1,49 @@
 # project_readme
 
 ## Descrição
-
-Este projeto consiste em um agente que automatiza a geração de arquivos README.md para projetos de software. Ele analisa o conteúdo dos arquivos do projeto e utiliza o modelo GPT-4 para criar uma documentação clara, concisa e completa, de acordo com as diretrizes fornecidas.
+O projeto automatiza a geração de arquivos README.md para projetos Python, utilizando inteligência artificial. Ele identifica as pastas de projetos em um diretório raiz, lê os arquivos relevantes, e cria uma documentação estruturada com seções específicas. A geração do README é feita por um agente que utiliza o OpenAI GPT-4, baseado nas informações extraídas dos arquivos do projeto.
 
 ## Sumário
-
 - [Instalação](#instalação)
 - [Uso](#uso)
 - [Estrutura de Pastas](#estrutura-de-pastas)
-- [Contato](#contato)
 
 ## Instalação
+Após clonar ou obter os arquivos do projeto, execute:
 
-Execute os seguintes comandos para instalar as dependências necessárias:
-
-```bash
+```sh
 pip install -r requirements.txt
 ```
 
-ou
-
-```bash
-python setup.py install
-```
+Certifique-se de que a variável de ambiente `OPENAI_API_KEY` está configurada com sua chave da API do OpenAI.
 
 ## Uso
+Para gerar README.md para projetos específicos ou detectar múltiplos projetos em um diretório, utilize o script `agent.py`.
 
-Para gerar README.md de um projeto específico:
+- Para tratar um caminho como projeto individual:
 
-```bash
-python agent.py --single /caminho/para/o/projeto
+```sh
+python agent.py --single caminho/do/projeto
 ```
 
-Para escanear um diretório e gerar README.md para cada projeto detectado automaticamente:
+- Para detectar projetos em um diretório e gerar README para cada um:
 
-```bash
-python agent.py /caminho/para/diretorio
+```sh
+python agent.py caminho/do/diretorio
 ```
 
-Se desejar tratar vários caminhos como projetos únicos:
+- Para detectar múltiplos projetos em vários caminhos e gerar seus READMEs:
 
-```bash
-python agent.py --single /caminho/1 /caminho/2
+```sh
+python agent.py caminho1 caminho2 --single
 ```
 
-Certifique-se de que a variável de ambiente `OPENAI_API_KEY` esteja configurada com sua chave da API da OpenAI.
+O script irá identificar automaticamente repositórios Git ou pastas com arquivos de configuração Python, lendo os arquivos relevantes e gerando o README em cada projeto.
 
 ## Estrutura de Pastas
-
-- agent.py
-- tools.py
-
-## Contato
-
-Problemas ou dúvidas? Reporte-os abrindo uma issue neste repositório ou entrando em contato pelo canal de suporte disponível.
+```
+project_readme/
+├── agent.py
+├── tools.py
+└── requirements.txt
+```

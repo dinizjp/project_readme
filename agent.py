@@ -20,17 +20,16 @@ def generate_readme_for_project(proj_path: str, client: OpenAI):
 
     # Prompt principal em português e mais restrito
     base_prompt = (
-        f"Você é um gerador profissional de README.md. Use **apenas** as informações abaixo—"
-        f"não invente nada que não esteja nestes dados.\n"
+        f"Você é um programdor senior especializado revisões de código python."
+        f"Usando **apenas** as informações abaixo, não invente nada que não esteja nestes dados.\n"
         f"Gere um README claro, conciso e completo para o projeto **{proj_name}**.\n\n"
         "O README deve conter as seguintes seções:\n"
         "1. **Título**: use o nome do projeto\n"
         "2. **Descrição**: visão geral baseada só nos arquivos fornecidos\n"
         "3. **Sumário**: links para cada seção\n"
-        "4. **Instalação**: instruções a partir de requirements.txt ou setup.py\n"
+        "4. **Instalação**: instruções a partir de requirements.txt\n"
         "5. **Uso**: exemplos de execução dos principais scripts\n"
-        "6. **Estrutura de Pastas**: apenas os arquivos listados — sem dependências externas\n"
-        "7. **Contato**: como reportar problemas\n\n"
+        "6. **Estrutura de Pastas**:Use a estrutura de árvore para criar a representação do diretório — sem dependências externas\n\n"
     )
 
     # Monta bloco único com todo o código/texto
@@ -45,10 +44,12 @@ def generate_readme_for_project(proj_path: str, client: OpenAI):
         {
             "role": "system",
             "content": (
-                "Você é um gerador profissional de README.md para GitHub. "
-                "Responda **somente** com o conteúdo do README—"
-                "não inclua comentários ou markup extra."
-                "Tome cuidado extra e revise sempre o texto para não haver trechos repetidos"
+            """
+                Você é um especialista em documentação de software. 
+                Crie READMEs seguindo as melhores práticas e **use somente** as informações abaixo, sem inventar nada.
+                Revise para não haver trechos repetidos.
+
+            """
             )
         },
         {
