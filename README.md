@@ -1,10 +1,11 @@
 # project_readme
 
-## Descrição do Projeto
+## Descrição
 
-Este projeto consiste em um conjunto de arquivos que implementam uma ferramenta para geração automatizada de README.md para projetos de software, usando integração com a API do OpenAI GPT. Ele inclui scripts para leitura de arquivos de projeto, descoberta de projetos em diretórios, geração de conteúdo estruturado para README, além de diversas utilidades e configurações de transporte HTTP e manipulação de conteúdo.
+Este projeto consiste em um agente que automatiza a geração de arquivos README.md para projetos de software. Ele analisa o conteúdo dos arquivos do projeto e utiliza o modelo GPT-4 para criar uma documentação clara, concisa e completa, de acordo com as diretrizes fornecidas.
 
 ## Sumário
+
 - [Instalação](#instalação)
 - [Uso](#uso)
 - [Estrutura de Pastas](#estrutura-de-pastas)
@@ -12,53 +13,45 @@ Este projeto consiste em um conjunto de arquivos que implementam uma ferramenta 
 
 ## Instalação
 
-Para preparar o ambiente, instale as dependências necessárias, preferencialmente usando o arquivo `requirements.txt`. Caso queira instalar via `setup.py`, execute:
+Execute os seguintes comandos para instalar as dependências necessárias:
 
 ```bash
-pip install .
+pip install -r requirements.txt
 ```
 
-Certifique-se de configurar sua variável de ambiente `OPENAI_API_KEY` com sua chave de API do OpenAI para que o script funcione corretamente.
+ou
+
+```bash
+python setup.py install
+```
 
 ## Uso
 
-Execute o script `agent.py` passando os caminhos de projetos ou diretórios que deseja processar. Exemplo de uso:
+Para gerar README.md de um projeto específico:
 
 ```bash
-python3 agent.py --single ./meu_projeto
+python agent.py --single /caminho/para/o/projeto
 ```
 
-Se desejar processar múltiplos diretórios ou projetos em um caminho raiz, basta informar os caminhos:
+Para escanear um diretório e gerar README.md para cada projeto detectado automaticamente:
 
 ```bash
-python3 agent.py ./diretorio1 ./diretorio2
+python agent.py /caminho/para/diretorio
 ```
 
-O programa buscará projetos nas pastas especificadas, gerará o README.md correspondente usando GPT e salvará na raiz de cada projeto.
-
-Para gerar README de projetos específicos de forma individual, use:
+Se desejar tratar vários caminhos como projetos únicos:
 
 ```bash
-python3 agent.py --single ./projeto_especifico
+python agent.py --single /caminho/1 /caminho/2
 ```
+
+Certifique-se de que a variável de ambiente `OPENAI_API_KEY` esteja configurada com sua chave da API da OpenAI.
 
 ## Estrutura de Pastas
 
-- `agent.py`  
-  Script principal que controla a leitura de projetos, geração de README via GPT, e comandos CLI.
-
-- `tools.py`  
-  Utilitários para leitura e descoberta de projetos em diretórios, filtrando arquivos relevantes.
-
-- `venv_lib_python3.12_site-packages_*`  
-  Diversos pacotes de dependências, incluindo definições de tipos, utilidades HTTP, decodificadores, modelos de dados, e implementações de transportes HTTP.
-
-- Outros arquivos de bibliotecas como `httpx`, `httpcore`, `pygments`, `rich`, que fornecem funcionalidades de requisições HTTP, processamento de conteúdo, formatação, e análise de código.
+- agent.py
+- tools.py
 
 ## Contato
 
-Para reportar problemas ou solicitar ajuda, envie uma mensagem para o administrador do projeto ou abra uma issue no repositório GitHub correspondente. Para configurações específicas de API, configure sua variável de ambiente `OPENAI_API_KEY` com sua chave válida.
-
----
-
-**Nota:** Este projeto depende de configurações de API da OpenAI e requer conexão à internet para funcionamento adequado. Além disso, Certifique-se de instalar as dependências necessárias listadas no requirements.txt ou setup.py antes de iniciar a utilização.
+Problemas ou dúvidas? Reporte-os abrindo uma issue neste repositório ou entrando em contato pelo canal de suporte disponível.
