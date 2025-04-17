@@ -1,49 +1,48 @@
 # project_readme
 
 ## Descrição
-Este projeto automatiza a geração de arquivos README.md para projetos Python. Ele identifica as pastas de projetos em um diretório principal, lê os arquivos relevantes de cada projeto e utiliza inteligência artificial (ChatGPT) para criar uma documentação estruturada. A geração do README inclui seções como título, descrição, sumário, dependências, instalação, uso e estrutura de pastas, tudo com base nas informações extraídas dos arquivos do projeto.
+Este projeto automatiza a geração de documentação README.md para projetos Python. Utiliza inteligência artificial (GPT-4) para criar um README claro, conciso e completo, a partir de arquivos do projeto. O processo envolve leitura de arquivos relevantes, filtragem de pastas e arquivos, e consulta ao GPT para elaborar a documentação seguindo uma estrutura padronizada, que inclui título, descrição, sumário, dependências, instalação, uso e estrutura de pastas.
 
 ## Sumário
+- [Dependências](#dependências)
 - [Instalação](#instalação)
 - [Uso](#uso)
 - [Estrutura de Pastas](#estrutura-de-pastas)
 
-## Instalação
-Após obter os arquivos do projeto, execute:
+## Dependências
+- openai
+- python-dotenv
 
-```sh
+## Instalação
+```bash
 pip install -r requirements.txt
 ```
 
-Certifique-se de configurar a variável de ambiente `OPENAI_API_KEY` com sua chave da API do OpenAI.
-
 ## Uso
-Para gerar README.md para projetos específicos ou detectar múltiplos projetos em um diretório, utilize o script `agent.py`.
+Para gerar README.md para um ou mais projetos, utilize o script `agent.py`. Exemplos:
 
-- Para tratar um caminho como projeto individual:
-
-```sh
+Para tratar cada caminho como um projeto único:
+```bash
 python agent.py --single caminho/do/projeto
 ```
 
-- Para detectar projetos em um diretório e gerar README para cada um:
-
-```sh
-python agent.py caminho/do/diretorio
+Para analisar múltiplos projetos dentro de uma pasta:
+```bash
+python agent.py caminho/para/pasta
 ```
 
-- Para detectar múltiplos projetos em vários caminhos e gerar seus READMEs:
-
-```sh
-python agent.py caminho1 caminho2 --single
+Se desejar processar diferentes pastas:
+```bash
+python agent.py pasta1 pasta2
 ```
 
-O script identifica automaticamente repositórios Git ou pastas com arquivos de configuração Python, lê os arquivos relevantes e gera o README em cada projeto.
+O script irá detectar automaticamente os projetos dentro dos caminhos fornecidos, solicitando ao GPT a elaboração dos READMEs.
 
 ## Estrutura de Pastas
 ```
 project_readme/
+│
 ├── agent.py
-├── tools.py
-└── requirements.txt
+├── requirements.txt
+└── tools.py
 ```
